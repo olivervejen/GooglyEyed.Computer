@@ -13,7 +13,58 @@
               {{ site.avatar | relative_url }}
             {% endif %}
           {% endcapture %}
-        <img src="{{ avatar_url | strip }}" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+        
+        <model-viewer src="{{ avatar_url | strip }}" interpolation-decay="25" shadow-intensity="1" camera-orbit="0deg 0deg 60m" field-of-view="30deg" camera-target="0m 0m 0m" min-camera-orbit="-60deg 50deg auto" max-camera-orbit="20deg 110deg auto" id="avatar_model">
+          <div id='eye_container'>
+            <div id="eye_inner">
+              <div class='eye'></div>
+              <div class='eye'></div>
+            </div>
+          </div>
+          <div class="progress-bar hide" slot="progress-bar">
+              <div class="update-bar"></div>
+          </div>
+      </model-viewer>
+      
+
+      <script>
+        const modelViewer = document.getElementById('avatar_model'); 
+        const eyesContainer = document.getElementById('eye_container'); 
+        
+        document.onmousemove = handleMouseMove;
+        
+        function handleMouseMove(event) {
+            var centerX = modelViewer.offsetLeft + modelViewer.offsetWidth / 2;
+            var centerY = modelViewer.offsetTop + modelViewer.offsetHeight / 2;
+            
+            event = event || window.event;
+
+            x = - ((event.pageX-centerX) / window.innerWidth)*60 
+            y = - ((event.pageY-centerY) / window.innerHeight)*40
+            
+            x = x > 0 ? (-(event.pageX/centerX)+1)*20 : x;
+            y = y > 0 ? (-(event.pageY/centerY)+1)*20 : y;
+
+            //console.log(x + "  " + y);
+            modelViewer.cameraOrbit = (x) + "deg " + (90+y) +"deg 60m";
+            eyesContainer.style.transform = 'rotateX('+y+'deg) rotateY('+-x+'deg) translateZ(60px)';
+            //eyesContainer.style.transform = 'rotateY('+y+'deg)';
+        }
+        document.body.onmousemove = (function(event) {
+          var eye = $(".eye");
+          //console.log('eye', eye)
+          var x = (eye.offset().left) + (eye.width() / 2);
+          var y = (eye.offset().top) + (eye.height() / 2);
+          var rad = Math.atan2(event.pageX - x, event.pageY - y);
+          var rot = (rad * (180 / Math.PI) * -1) + 180;
+          eye.css({
+            '-webkit-transform': 'rotate(' + rot + 'deg)',
+            '-moz-transform': 'rotate(' + rot + 'deg)',
+            '-ms-transform': 'rotate(' + rot + 'deg)',
+            'transform': 'rotate(' + rot + 'deg)'
+          });
+        });
+      </script>
       {% endif %}
     </a>
 
