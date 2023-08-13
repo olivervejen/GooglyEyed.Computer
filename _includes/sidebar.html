@@ -51,18 +51,21 @@
             //eyesContainer.style.transform = 'rotateY('+y+'deg)';
         }
         document.body.onmousemove = (function(event) {
-          var eye = $(".eye");
+          //var eye = $(".eye");
           //console.log('eye', eye)
-          var x = (eye.offset().left) + (eye.width() / 2);
-          var y = (eye.offset().top) + (eye.height() / 2);
-          var rad = Math.atan2(event.pageX - x, event.pageY - y);
-          var rot = (rad * (180 / Math.PI) * -1) + 180;
-          eye.css({
-            '-webkit-transform': 'rotate(' + rot + 'deg)',
-            '-moz-transform': 'rotate(' + rot + 'deg)',
-            '-ms-transform': 'rotate(' + rot + 'deg)',
-            'transform': 'rotate(' + rot + 'deg)'
-          });
+          $(".eye").each((i, obj)=>{
+            var x = ($(obj).offset().left) + ($(obj).width() / 2);
+            var y = ($(obj).offset().top) + ($(obj).height() / 2);
+            var rad = Math.atan2(event.pageX - x, event.pageY - y);
+            var rot = (rad * (180 / Math.PI) * -1) + 180;
+            $(obj).css({
+              '-webkit-transform': 'rotate(' + rot + 'deg)',
+              '-moz-transform': 'rotate(' + rot + 'deg)',
+              '-ms-transform': 'rotate(' + rot + 'deg)',
+              'transform': 'rotate(' + rot + 'deg)'
+            });
+          })
+          
         });
       </script>
       {% endif %}
