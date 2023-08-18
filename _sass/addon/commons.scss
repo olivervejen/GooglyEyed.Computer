@@ -721,11 +721,11 @@ $btn-mb: 0.5rem;
     box-shadow: var(--avatar-border-color) 0 0 0 2px;
     transform: translateZ(0); /* fixed the zoom in Safari */
     margin: auto;
-
     model-viewer {
       width: inherit;
       height: inherit;
       transition: transform 0.5s;
+      top:-5px;
       &:hover {
         transform: scale(1.2);
       }
@@ -1422,7 +1422,7 @@ $btn-mb: 0.5rem;
 
   #sidebar {
     .profile-wrapper {
-      margin-top: 3rem;
+      margin-top: 2.5rem;
     }
   }
 
@@ -1585,7 +1585,7 @@ $btn-mb: 0.5rem;
     $icon-gap: 1rem; // for the bottom icons
 
     .profile-wrapper {
-      margin-top: 3.5rem;
+      margin-top: 2.5rem;
       margin-bottom: 2.5rem;
     }
 

@@ -74,8 +74,12 @@
           return newTime;
         }
         const blinktime = 100;
+        const innerTop = eyesInner.offsetTop
         function toggleSomething() {
-          var timeArray = new Array(5000, 3000, 15000);
+          if ( !document.hasFocus() ) {
+            return;
+          }
+          var timeArray = new Array(1000, 5000, 3000, 15000, 5000, 3000, 15000);
 
           // do stuff, happens to use jQuery here (nothing else does)
           $(eyesInner).animate({
@@ -84,7 +88,7 @@
           }, blinktime, function() {
             $(eyesInner).animate({
               height: "toggle",
-              top: "-="+$(eyesInner).height()/2
+              top: innerTop
             }, blinktime);
           });
           $(".eye").animate({
