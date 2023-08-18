@@ -30,6 +30,7 @@
       <script>
         const modelViewer = document.getElementById('avatar_model'); 
         const eyesContainer = document.getElementById('eye_container'); 
+        const eyesInner = document.getElementById('eye_inner'); 
 
         const minCamOrbit = modelViewer.minCameraOrbit;
         const maxCamOrbit = modelViewer.maxCameraOrbit;
@@ -66,8 +67,39 @@
               'transform': 'rotate(' + rot + 'deg)'
             });
           })
-          
         });
+
+        function randRange(data) {
+          var newTime = data[Math.floor(data.length * Math.random())];
+          return newTime;
+        }
+        const blinktime = 100;
+        function toggleSomething() {
+          var timeArray = new Array(5000, 3000, 15000);
+
+          // do stuff, happens to use jQuery here (nothing else does)
+          $(eyesInner).animate({
+            height: "toggle",
+            top: "+="+$(eyesInner).height()/2
+          }, blinktime, function() {
+            $(eyesInner).animate({
+              height: "toggle",
+              top: "-="+$(eyesInner).height()/2
+            }, blinktime);
+          });
+          $(".eye").animate({
+            top: "-="+$(eyesInner).height()/2
+          }, blinktime, function() {
+            $(this).animate({
+              top: "0"
+            }, blinktime);
+          });
+
+          clearInterval(timer);
+          timer = setInterval(toggleSomething, randRange(timeArray));
+        }
+
+        var timer = setInterval(toggleSomething, 1000);
       </script>
       {% endif %}
     </a>

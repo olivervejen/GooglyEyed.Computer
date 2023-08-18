@@ -739,26 +739,27 @@ $btn-mb: 0.5rem;
           margin: auto;
           top: 80px;
           left: 5px;
+          .eye {
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+            height:50px;
+            width: 50px;
+            background: #FFF;
+            margin-right: 10px;
+          }
+          .eye:after { /*pupil*/
+            position: absolute;
+            bottom: 25px;
+            right: 10px;
+            width: 25px;
+            height: 25px;
+            background: #000;
+            border-radius: 50%;
+            content: " ";
+          } 
         }
-        .eye {
-          position: relative;
-          display: inline-block;
-          border-radius: 50%;
-          height: 50px;
-          width: 50px;
-          background: #FFF;
-          margin-right: 10px;
-        }
-        .eye:after { /*pupil*/
-          position: absolute;
-          bottom: 25px;
-          right: 10px;
-          width: 25px;
-          height: 25px;
-          background: #000;
-          border-radius: 50%;
-          content: " ";
-        } 
+        
       }
     }
   }
