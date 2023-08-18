@@ -14,7 +14,7 @@
             {% endif %}
           {% endcapture %}
         
-        <model-viewer src="{{ avatar_url | strip }}" interpolation-decay="25" shadow-intensity="1" camera-orbit="0deg 0deg 60m" field-of-view="30deg" camera-target="0m 0m 0m" min-camera-orbit="-60deg 50deg auto" max-camera-orbit="20deg 110deg auto" id="avatar_model">
+        <model-viewer src="{{ avatar_url | strip }}" interpolation-decay="25" shadow-intensity="1" camera-orbit="0deg 0deg auto" field-of-view="30deg" camera-target="0m 0m 0m" min-camera-orbit="-10deg 80deg auto" max-camera-orbit="10deg 100deg auto" id="avatar_model">
           <div id='eye_container'>
             <div id="eye_inner">
               <div class='eye'></div>
@@ -30,25 +30,32 @@
       <script>
         const modelViewer = document.getElementById('avatar_model'); 
         const eyesContainer = document.getElementById('eye_container'); 
+
+        const minCamOrbit = modelViewer.minCameraOrbit;
+        const maxCamOrbit = modelViewer.maxCameraOrbit;
         
         document.onmousemove = handleMouseMove;
         
         function handleMouseMove(event) {
-            var centerX = modelViewer.offsetLeft + modelViewer.offsetWidth / 2;
-            var centerY = modelViewer.offsetTop + modelViewer.offsetHeight / 2;
-            
-            event = event || window.event;
+          const box = modelViewer.getBoundingClientRect()
+          const centerX = (box.left + box.right) / 2
+          const centerY = (box.top + box.bottom) / 2
+          var minOrbit = modelViewer.minCameraOrbit.split("deg");
+          var maxOrbit = modelViewer.maxCameraOrbit.split("deg");
+          
+          event = event || window.event;
+          x = (event.clientX / window.innerWidth)*minOrbit[0];  
+          y = -(event.clientY/ window.innerHeight)*(90-minOrbit[1]);
+          
+          x = event.clientX-centerX < 0 ? (-(event.clientX/centerX)+1)*maxOrbit[0] : x;
+          y = event.clientY-centerY < 0 ? (-(event.clientY/centerY)+1)*(maxOrbit[1]-90) : y;
 
-            x = - ((event.screenX-centerX) / window.innerWidth)*60 
-            y = - ((event.screenY-centerY) / window.innerHeight)*40
-            
-            x = x > 0 ? (-(event.screenX/centerX)+1)*20 : x;
-            y = y > 0 ? (-(event.screenY/centerY)+1)*20 : y;
-
-            //console.log(x + "  " + y);
-            modelViewer.cameraOrbit = (x) + "deg " + (90+y) +"deg 60m";
-            eyesContainer.style.transform = 'rotateX('+y+'deg) rotateY('+-x+'deg) translateZ(60px)';
-            //eyesContainer.style.transform = 'rotateY('+y+'deg)';
+          console.log(x + "  " + y);
+          //console.log(event.clientY-centerY);
+          //console.log(event.clientX + "/" + event.screenX + "  " + document.body.clientWidth);
+          modelViewer.cameraOrbit = (x) + "deg " + (90+y) +"deg auto";
+          eyesContainer.style.transform = 'rotateX('+y+'deg) rotateY('+-x+'deg) translateZ(60px)';
+          //eyesContainer.style.transform = 'rotateY('+y+'deg)';
         }
         document.body.onmousemove = (function(event) {
           //var eye = $(".eye");
