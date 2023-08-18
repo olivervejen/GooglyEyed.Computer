@@ -14,7 +14,7 @@
             {% endif %}
           {% endcapture %}
         
-        <model-viewer src="{{ avatar_url | strip }}" interpolation-decay="25" shadow-intensity="1" camera-orbit="0deg 0deg auto" field-of-view="30deg" camera-target="0m 0m 0m" min-camera-orbit="-10deg 80deg auto" max-camera-orbit="10deg 100deg auto" id="avatar_model">
+        <model-viewer src="{{ avatar_url | strip }}" poster="/assets/img/model-posters/poster.webp" interpolation-decay="25" shadow-intensity="1" camera-orbit="0deg 0deg auto" field-of-view="30deg" camera-target="0m 0m 0m" min-camera-orbit="-10deg 80deg auto" max-camera-orbit="10deg 100deg auto" id="avatar_model">
           <div id='eye_container'>
             <div id="eye_inner">
               <div class='eye'></div>
@@ -50,16 +50,10 @@
           x = event.clientX-centerX < 0 ? (-(event.clientX/centerX)+1)*maxOrbit[0] : x;
           y = event.clientY-centerY < 0 ? (-(event.clientY/centerY)+1)*(maxOrbit[1]-90) : y;
 
-          console.log(x + "  " + y);
-          //console.log(event.clientY-centerY);
-          //console.log(event.clientX + "/" + event.screenX + "  " + document.body.clientWidth);
           modelViewer.cameraOrbit = (x) + "deg " + (90+y) +"deg auto";
           eyesContainer.style.transform = 'rotateX('+y+'deg) rotateY('+-x+'deg) translateZ(60px)';
-          //eyesContainer.style.transform = 'rotateY('+y+'deg)';
         }
         document.body.onmousemove = (function(event) {
-          //var eye = $(".eye");
-          //console.log('eye', eye)
           $(".eye").each((i, obj)=>{
             var x = ($(obj).offset().left) + ($(obj).width() / 2);
             var y = ($(obj).offset().top) + ($(obj).height() / 2);
