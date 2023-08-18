@@ -40,7 +40,7 @@
             event = event || window.event;
 
             x = - ((event.pageX-centerX) / window.innerWidth)*60 
-            y = - ((event.pageY-centerY) / window.innerHeight)*40
+            y = - ((event.pageY-centerY) / window.outerHeight)*40
             
             x = x > 0 ? (-(event.pageX/centerX)+1)*20 : x;
             y = y > 0 ? (-(event.pageY/centerY)+1)*20 : y;
