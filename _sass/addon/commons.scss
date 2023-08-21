@@ -267,7 +267,7 @@ i {
       position: relative;
     }
 
-    .post-content li::before, .toc-list li::before {
+    .post-content li a::before, .toc-list li a::after {
       display: inline;
       text-align: center;
       position: absolute;
