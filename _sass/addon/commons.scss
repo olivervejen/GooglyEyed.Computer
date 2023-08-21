@@ -283,10 +283,12 @@ i {
       position: absolute;
       right: 0rem;
       margin-top: -2px;
-      margin-right: 0px;
+      margin-right: 1px;
       content: "|-";
       font-size: 15px;
       font-weight: 100;
+      /* letter-spacing: initial; */
+      letter-spacing: -.75px;
     }
     // .toc-list li::before{
     //   padding: 0.2rem 0 0.2rem 1.25rem;
