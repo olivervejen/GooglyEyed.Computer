@@ -15,7 +15,7 @@ I have always had a lot of thoughts about a lot of things. It would be sad to le
 Another big motivator for this blog, is to encourage neurodivergent people. I want to normalize expressing our ideas and thoughts to the world. Our thoughts are so often shut down or ignored by the public because they can be quite nonconforming. But our different ways of thinking are valuable. I believe that the best way to understand the world is through a diverse set of perspectives.
 
 ## Who I am
-![Desktop View](/assets/img/posts/about_googlyeyed_computer/ProfilePic.jpg){: width="300" .right}
+![Desktop View](/assets/img/posts/about_googlyeyed_computer/ProfilePic.jpg){: width="50%" max-width="300px" .right}
 My name is Oliver Birkekær Vejen , a storyteller from Denmark. My journey into creativity began with inventing fantasy worlds for friends. This childhood passion has grown into a deep love for world-building and storytelling.
 
 Technology has also always been interesting to me. video games caught my interest at a young age, when I got my Game Boy Color at the ripe age of 3. Some years later, once I started becoming a person, I came to a conclusion. I wanted to make video games when I grew up. This interest has also evolved. I now work in the games’ industry and have done so for a handful of years. Apart from that, I am an avid and curious programmer, as well as a passionate game designer.
